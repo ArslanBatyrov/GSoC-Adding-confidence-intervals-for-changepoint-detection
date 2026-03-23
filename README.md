@@ -20,3 +20,18 @@ Next, this is the fitted AR1 line. Estimate gave 119 as breaking point which was
 
 
 <img width="633" height="604" alt="image2GSoC" src="https://github.com/user-attachments/assets/143121ad-d302-4012-b3fa-7400cec6f98c" />
+
+
+Next, with AR2, I faced on little issue. It was not estimating the value. I was getting integer(0). Then I reallised that it was due to my small data set (n1 = 118). So, I increased it to 221.
+
+Consequnetly, next graphs will have a larger estimated data (AR1 estimated 215, while AR2 estimated 216. Real changing point was 221). Graphs are presented:
+
+## AR2 separately: 
+<img width="633" height="604" alt="image3GSoC" src="https://github.com/user-attachments/assets/36f317fb-dec6-473a-9b3e-21a1f9654482" />
+
+
+## Final Results (everything combined on a dataset of n1=221): 
+<img width="633" height="604" alt="image4GSoC" src="https://github.com/user-attachments/assets/fb1bfcdb-a280-4d4a-a2d5-d9cb49b27bde" />
+
+
+
