@@ -5,8 +5,8 @@ set.seed(2118) # As it is my favourite number
 # Now, I will set the amount of observations we want to generate
 # for each fo the 2 regimes
 
-n1 <- 118
-n2 <- 118
+n1 <- 221
+n2 <- 221
 n <- n1 + n2
 
 # next I will create just a random noise variable and an empty vector of the
@@ -75,3 +75,13 @@ x_ar2 <- cbind(
   ts_y[1:(length(ts_y) - 2)] # lag 1 and 2 values added
 )
 
+# Using the same function from EnvCpt but with AR2 fomratted data
+fit_ar2 <- EnvCpt:::cpt.reg(
+  x_ar2,
+  method = "PELT",
+  minseglen = 5
+)
+# Extracting the breaking point again:
+cpts(fit_ar2)
+plot(fit_ar2, main = "AR2 changepoint fit")
+class(fit_ar2)
