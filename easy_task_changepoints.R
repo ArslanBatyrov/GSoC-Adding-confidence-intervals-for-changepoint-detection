@@ -26,3 +26,17 @@ for (t in 2:n1) {
 # meaning a second AR with stronger dependence post n1.
 # This part is relatively simple
 y[n1 + 1] <- 0.85 * y[n1] + e[n1 + 1]
+
+
+# generating all other points after the break generated above (full second stronger dependence AR)
+for (t in (n1 + 2):n) {
+  y[t] <- 0.85*y[t-1] + e[t]
+}
+
+
+
+# Time to convert a simulated vector into time-series object -> Then plot it with the break point
+ts_y <-ts(y)
+
+plot(ts_y, main = "Simulated series with changing AR structure (change occurs at point 118)")
+abline(v = n1, lty = 2)
