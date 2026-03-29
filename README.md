@@ -36,3 +36,37 @@ Consequnetly, next graphs will have a larger estimated data (AR1 estimated 215, 
 
 
 # Medium Test Results:
+
+This the PR I submitted: 
+
+My PR adds two focused test files to increase coverage in `EnvCpt`:
+
+- `test-plot-extra.R` for `plot.envcpt()` argument validation and behaviour
+- `test-diagnostics-extra.R` for `AIC` / `AICweights` diagnostics behaviour
+
+I ran the full local test suite with `NOT_CRAN=true`, and it completed with no failures.
+
+I also compared package coverage on upstream `main` versus this branch using `covr::package_coverage()`.
+
+## Coverage summary
+
+| File | Before | After |
+|---|---:|---:|
+| Overall | 87.02% | 87.81% |
+| `R/diagnostics.R` | 80.08% | 82.57% |
+| `src/C_cptreg.c` | 85.60% | 85.60% |
+| `R/CptReg.R` | 94.35% | 94.35% |
+| `R/envcpt.R` | 95.49% | 95.49% |
+
+While adding diagnostics tests, I also noticed a likely separate bug in `BIC.envcpt()` when `n` is supplied explicitly.
+
+## Reproducible example
+
+```r
+set.seed(1)
+x <- c(rnorm(100, 0, 1), rnorm(100, 5, 1))
+out <- envcpt(x)
+BIC(out, n = length(x))
+```
+
+# Hard Test Results
