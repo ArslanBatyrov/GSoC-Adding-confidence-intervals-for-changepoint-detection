@@ -69,4 +69,23 @@ out <- envcpt(x)
 BIC(out, n = length(x))
 ```
 
-# Hard Test Results
+## Hard Test
+
+For the hard task, I turned my Easy task solution into a small R package with checks, tests, GitHub Actions, and code coverage.
+
+I built `hardTaskChangepoint`, which wraps the manual AR(1)/AR(2) design-matrix construction from the Easy task into a reusable function. The package supports AR(1) and AR(2) changepoint fitting, both with and without trend.
+
+```r
+devtools::install_github("ArslanBatyrov/hardTaskChangepoint")
+```
+Example usage:
+```
+# AR(1) without trend
+fit_ar_change(x, ar_order = 1, trend = FALSE)
+
+# AR(2) with trend
+fit_ar_change(x, ar_order = 2, trend = TRUE)
+```
+The package currently includes 8 passing unit tests with no failures. It also has GitHub Actions for automated R CMD check and a coverage workflow via covr and Codecov. Input validation is included for non-numeric input, missing values, invalid AR order, and invalid trend input.
+
+Package repository: ArslanBatyrov/hardTaskChangepoint
